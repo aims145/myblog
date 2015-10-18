@@ -27,9 +27,12 @@ class Login extends CI_Controller {
 			$msg = '<font color=red>Invalid username and/or password.</font><br />';
 			$this->index($msg);
 		}else{
-			// If user did validate, 
-			// Send them to members area
-			redirect('home');
+			if($this->session->userdata('role') == 'admin'){
+                            redirect('admin/home');
+                        }else{
+                            redirect('home');
+                        }
+			
 		}				
         }
 }
